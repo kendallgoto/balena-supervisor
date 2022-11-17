@@ -284,6 +284,7 @@ export class Service {
 				service.appId || 0,
 				service.appUuid!,
 				service.serviceName || '',
+				service.commit || '',
 			),
 		);
 		config.labels = ComposeUtils.normalizeLabels(
@@ -991,6 +992,7 @@ export class Service {
 		appId: number,
 		appUuid: string,
 		serviceName: string,
+		releaseCommit: string,
 	): { [envVarName: string]: string } {
 		const defaultEnv: { [envVarName: string]: string } = {};
 		for (const namespace of ['BALENA', 'RESIN']) {
@@ -1002,6 +1004,7 @@ export class Service {
 						APP_UUID: appUuid,
 						APP_NAME: options.appName,
 						SERVICE_NAME: serviceName,
+						RELEASE_COMMIT: releaseCommit,
 						DEVICE_UUID: options.uuid,
 						DEVICE_TYPE: options.deviceType,
 						DEVICE_ARCH: options.deviceArch,
